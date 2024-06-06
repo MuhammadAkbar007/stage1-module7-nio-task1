@@ -2,6 +2,7 @@ package com.epam.mjc.nio;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,8 +18,11 @@ public class FileReader {
         Path path = Paths.get(file.toPath().toString());
 
         try {
+
             Map<String, String> linesMap = new HashMap<>();
-            List<String> lines = Files.readAllLines(path);
+
+            List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+
             for (String line : lines) {
                 String[] pairs = line.split(": ", 2);
                 if (pairs.length == 2) {
